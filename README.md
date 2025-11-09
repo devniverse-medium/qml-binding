@@ -47,8 +47,8 @@ Este projeto ilustra um problema comum em QML onde dois elementos dependem mutua
 
 Este projeto compara duas abordagens reativas para calcular a posição de elementos:
 
-1. **Propriedade com binding** (`reactPosition` - linhas 34-37): É reativa e se atualiza automaticamente quando `enabled` muda
-2. **Função** (`rectPosition()` - linhas 48-53): Também é reativa quando usada em bindings, respondendo a mudanças em `enabled`
+1. **Propriedade com binding** (`reactPosition`): É reativa e se atualiza automaticamente quando `enabled` muda
+2. **Função** (`rectPosition()`): Também é reativa quando usada em bindings, respondendo a mudanças em `enabled`
 
 **Ambas são reativas**, mas diferem na forma como são avaliadas quando usadas em múltiplos lugares.
 
@@ -56,9 +56,9 @@ Este projeto compara duas abordagens reativas para calcular a posição de eleme
 
 Quando ambas as abordagens são usadas para definir `x` e `y` de um elemento:
 
-- **Propriedade com binding** (linhas 42-43): Quando `x: reactPosition` e `y: reactPosition` são usados, o binding é **avaliado apenas uma vez** quando `enabled` muda, e o valor calculado é **reutilizado** para ambas as propriedades. O `console.log` dentro da propriedade será executado **apenas uma vez**.
+- **Propriedade com binding**: Quando `x: reactPosition` e `y: reactPosition` são usados, o binding é **avaliado apenas uma vez** quando `enabled` muda, e o valor calculado é **reutilizado** para ambas as propriedades. O `console.log` dentro da propriedade será executado **apenas uma vez**.
 
-- **Função** (linhas 57-58): Quando `x: rectPosition()` e `y: rectPosition()` são usados, a função é **chamada separadamente** para cada propriedade. Mesmo que ambas dependam de `enabled`, o `console.log` dentro da função será executado **duas vezes** (uma para `x` e outra para `y`).
+- **Função**: Quando `x: rectPosition()` e `y: rectPosition()` são usados, a função é **chamada separadamente** para cada propriedade. Mesmo que ambas dependam de `enabled`, o `console.log` dentro da função será executado **duas vezes** (uma para `x` e outra para `y`).
 
 ### Estrutura
 
