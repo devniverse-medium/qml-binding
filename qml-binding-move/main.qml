@@ -1,5 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Window 2.15
+import QtQuick.Controls 2.15
+import QtQuick.Layouts 1.0
 
 Window {
     id: root
@@ -9,33 +11,51 @@ Window {
     visible: true
     width: 640
 
-    Rectangle {
-        id: rectFirst
+    ColumnLayout {
+        anchors.fill: parent
 
-        property int reactPosition: {
-            console.log("rectFirst.reactPosition")
-            return enabled ? 0 : 100
+        Button {
+            Layout.fillWidth: true
+            Layout.preferredHeight: 50
+            text: qsTr("Change enabled")
+
+            function _handleClicked() {
+                rectFirst.enabled = !rectFirst.enabled
+                rectSecond.enabled = !rectSecond.enabled
+            }
+
+            onClicked: () => _handleClicked()
+            z: 999
         }
 
-        color: "lightblue"
-        height: 200
-        width: 200
-        x: reactPosition
-        y: reactPosition
-    }
+        Rectangle {
+            id: rectFirst
 
-    Rectangle {
-        id: rectSecond
+            property int reactPosition: {
+                console.log("rectFirst.reactPosition")
+                return enabled ? 0 : 100
+            }
 
-        function rectPosition() {
-            console.log("rectSecond.reactPosition")
-            return enabled ? 0 : 100
+            color: "lightblue"
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            x: reactPosition
+            y: reactPosition
         }
 
-        color: "lightblue"
-        height: 200
-        width: 200
-        x: rectPosition()
-        y: rectPosition()
+        Rectangle {
+            id: rectSecond
+
+            function rectPosition() {
+                console.log("rectSecond.reactPosition")
+                return enabled ? 0 : 100
+            }
+
+            color: "lightblue"
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            x: rectPosition()
+            y: rectPosition()
+        }
     }
 }

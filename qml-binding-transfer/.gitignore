@@ -74,4 +74,6 @@ CMakeLists.txt.user*
 
 # Build directory (root)
  /build/
+/.qtc_clangd/
+
 
